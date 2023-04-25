@@ -3,7 +3,7 @@ package com.github.houbb.cache.api;
 /**
  * 删除监听器接口
  *
- * @author binbin.hou
+ *  
  * @since 0.0.6
  * @param <K> key
  * @param <V> value

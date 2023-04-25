@@ -6,13 +6,14 @@ import com.github.houbb.cache.core.model.PersistRdbEntry;
 import com.github.houbb.heaven.util.io.FileUtil;
 
 import java.nio.file.StandardOpenOption;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 /**
  * 缓存持久化-db-基于 JSON
- * @author binbin.hou
+ *  
  * @since 0.0.8
  */
 public class CachePersistDbJson<K,V> extends CachePersistAdaptor<K,V> {
@@ -42,9 +43,13 @@ public class CachePersistDbJson<K,V> extends CachePersistAdaptor<K,V> {
         // 清空文件
         FileUtil.truncate(dbPath);
 
-        for(Map.Entry<K,V> entry : entrySet) {
+        ArrayList<Map.Entry<K, V>> entries = new ArrayList<>(entrySet);
+
+        for(Map.Entry<K,V> entry : entries) {
             K key = entry.getKey();
             Long expireTime = cache.expire().expireTime(key);
+            // 过期键不放入
+            if (expireTime != null && expireTime < System.currentTimeMillis()) continue;
             PersistRdbEntry<K,V> persistRdbEntry = new PersistRdbEntry<>();
             persistRdbEntry.setKey(key);
             persistRdbEntry.setValue(entry.getValue());
@@ -67,7 +72,7 @@ public class CachePersistDbJson<K,V> extends CachePersistAdaptor<K,V> {
 
     @Override
     public TimeUnit timeUnit() {
-        return TimeUnit.MINUTES;
+        return TimeUnit.SECONDS;
     }
 
 }

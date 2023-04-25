@@ -5,7 +5,7 @@ import java.util.Map;
 
 /**
  * 缓存过期接口
- * @author binbin.hou
+ *  
  * @since 0.0.3
  */
 public interface ICacheExpire<K,V> {

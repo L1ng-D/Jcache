@@ -9,7 +9,7 @@ import com.github.houbb.log.integration.core.LogFactory;
 /**
  * 刷新
  *
- * @author binbin.hou
+ *  
  * @since 0.0.5
  */
 public class CacheInterceptorRefresh<K,V> implements ICacheInterceptor<K, V> {

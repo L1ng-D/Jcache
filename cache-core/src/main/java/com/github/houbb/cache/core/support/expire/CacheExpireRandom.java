@@ -22,7 +22,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * 缓存过期-普通策略随机
  *
- * @author binbin.hou
+ *  
  * @since 0.0.16
  * @param <K> key
  * @param <V> value

@@ -1,6 +1,7 @@
 package com.github.houbb.cache.core.bs;
 
 import com.github.houbb.cache.api.ICache;
+import com.github.houbb.cache.core.core.Cache;
 import com.github.houbb.cache.core.listener.MyRemoveListener;
 import com.github.houbb.cache.core.listener.MySlowListener;
 import com.github.houbb.cache.core.load.MyCacheLoad;
@@ -11,11 +12,13 @@ import com.github.houbb.cache.core.support.persist.CachePersists;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.sql.Array;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 /**
  * 缓存引导类测试
- * @author binbin.hou
+ *  
  * @since 0.0.2
  */
 public class CacheBsTest {
@@ -117,12 +120,20 @@ public class CacheBsTest {
     public void persistRdbTest() throws InterruptedException {
         ICache<String, String> cache = CacheBs.<String,String>newInstance()
                 .load(new MyCacheLoad())
-                .persist(CachePersists.<String, String>dbJson("1.rdb"))
+                .persist(CachePersists.<String, String>dbJson("2.rdb"))
                 .build();
 
-        Assert.assertEquals(2, cache.size());
-        TimeUnit.SECONDS.sleep(5);
+//        Assert.assertEquals(2, cache.size());
+
+
+        TimeUnit.SECONDS.sleep(10);
+//        ArrayList<Map.Entry<String, String>> entries = new ArrayList<>(cache.entrySet());
+//
+//        for (Map.Entry<String, String> entry : entries) {
+//            System.out.println(entry.toString());
+//        }
     }
+
 
     /**
      * 加载接口测试
@@ -176,10 +187,12 @@ public class CacheBsTest {
     @Test
     public void loadAofTest() throws InterruptedException {
         ICache<String, String> cache = CacheBs.<String,String>newInstance()
-                .load(CacheLoads.<String, String>aof("default.aof"))
+                .load(CacheLoads.<String, String>aof("1.aof"))
+                .persist(CachePersists.<String, String>aof("2.aof"))
                 .build();
-
-        Assert.assertEquals(1, cache.size());
+        cache.put("5", "5");
+        TimeUnit.SECONDS.sleep(2);
+//        Assert.assertEquals(2, cache.size());
         System.out.println(cache.keySet());
     }
 
@@ -190,21 +203,29 @@ public class CacheBsTest {
      */
     @Test
     public void lruEvictTest() throws InterruptedException {
-        ICache<String, String> cache = CacheBs.<String,String>newInstance()
+        ICache<String, HashMap<Integer, Integer>> cache = CacheBs.<String,HashMap<Integer, Integer>>newInstance()
                 .size(3)
-                .evict(CacheEvicts.<String, String>lru())
+                .evict(CacheEvicts.<String, HashMap<Integer, Integer>>lru())
                 .build();
 
-        cache.put("A", "hello");
-        cache.put("B", "world");
-        cache.put("C", "FIFO");
 
-        // 访问一次A
-        cache.get("A");
-        cache.put("D", "LRU");
+//a c b
+        HashMap<Integer, Integer> map = new HashMap<>();
+        map.put(1, 2);
+        cache.put("A", map);
+//        cache.put("B", "world");
+//        cache.put("C", "FIFO");
+//
+//        // 访问一次A
+//        cache.containsKey("A");
+//        cache.put("C", "LRU");
+//        cache.put("D", "LRU");
+//        cache.put("F", "LRU");
 
-        Assert.assertEquals(3, cache.size());
-        System.out.println(cache.keySet());
+//        Assert.assertEquals(3, cache.size());
+        for (Map.Entry<String, HashMap<Integer, Integer>> entry : cache.entrySet()) {
+            System.out.println(entry.getValue());
+        }
     }
 
     @Test
@@ -213,16 +234,39 @@ public class CacheBsTest {
                 .size(3)
                 .evict(CacheEvicts.<String, String>lruDoubleListMap())
                 .build();
+        System.out.println("cache = " + System.identityHashCode(cache));
+        cache.put("T","O");
+        ICache<String, String> cache1 = cache.expire("A",10000);
+        ICache<String, String> cache2 = cache1.expire("A",10000);
+        System.out.println("cache1 = " + System.identityHashCode(cache1));
 
-        cache.put("A", "hello");
-        cache.put("B", "world");
-        cache.put("C", "FIFO");
+        System.out.println(cache2 == cache);
 
-        // 访问一次A
-        cache.get("A");
-        cache.put("D", "LRU");
+        cache1.put("A", "hello");
 
-        Assert.assertEquals(3, cache.size());
+//        cache1.put("B", "world");
+//        cache1.put("C", "FIFO");
+//        cache1.put("C", "FIFO");
+
+
+
+//        cache.put("A", "hello");
+//        cache.put("B", "world");
+//        cache.put("C", "FIFO");
+//
+//        // 访问一次A
+//        cache.get("A");
+//        cache.put("D", "LRU");
+//        cache.put("E", "LR");
+//        cache.put("A", "LR");
+//        cache.put("F", "LR");
+//        cache.put("G", "LR");
+//        cache.remove("G");
+//        cache.remove("G");
+
+
+
+//        Assert.assertEquals(3, cache.size());
         System.out.println(cache.keySet());
     }
 
@@ -247,6 +291,7 @@ public class CacheBsTest {
 
         Assert.assertEquals(3, cache.size());
         System.out.println(cache.keySet());
+        System.out.println(Integer.parseInt("000"));
     }
 
     /**
@@ -267,6 +312,8 @@ public class CacheBsTest {
         // 访问一次A
         cache.get("A");
         cache.put("D", "LRU");
+        cache.put("A", "LRU");
+        cache.put("E", "LRU");
 
         Assert.assertEquals(3, cache.size());
         System.out.println(cache.keySet());

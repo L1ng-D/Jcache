@@ -15,7 +15,7 @@ import java.util.List;
 
 /**
  * 加载策略-文件路径
- * @author binbin.hou
+ *  
  * @since 0.0.8
  */
 public class CacheLoadDbJson<K,V> implements ICacheLoad<K,V> {
@@ -53,6 +53,9 @@ public class CacheLoadDbJson<K,V> implements ICacheLoad<K,V> {
             K key = entry.getKey();
             V value = entry.getValue();
             Long expire = entry.getExpire();
+
+            // 过期键不加载
+            if (expire != null && expire < System.currentTimeMillis()) continue;
 
             cache.put(key, value);
             if(ObjectUtil.isNotNull(expire)) {

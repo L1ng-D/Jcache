@@ -2,7 +2,7 @@ package com.github.houbb.cache.core.model;
 
 /**
  * 双向链表节点
- * @author binbin.hou
+ *  
  * @since 0.0.12
  * @param <K> key
  * @param <V> value

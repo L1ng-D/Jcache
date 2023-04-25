@@ -6,7 +6,7 @@ import com.github.houbb.cache.api.ICacheEvictContext;
 
 /**
  * 丢弃策略-抽象实现类
- * @author binbin.hou
+ *  
  * @since 0.0.11
  */
 public abstract class AbstractCacheEvict<K,V> implements ICacheEvict<K,V> {

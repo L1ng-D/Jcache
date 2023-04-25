@@ -3,7 +3,7 @@ package com.github.houbb.cache.api;
 /**
  * 驱除策略
  *
- * @author binbin.hou
+ *  
  * @since 0.0.2
  */
 public interface ICacheEvict<K, V> {

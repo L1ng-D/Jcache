@@ -20,7 +20,7 @@ import java.util.Map;
 
 /**
  * 加载策略-AOF文件模式
- * @author binbin.hou
+ *  
  * @since 0.0.10
  */
 public class CacheLoadAof<K,V> implements ICacheLoad<K,V> {

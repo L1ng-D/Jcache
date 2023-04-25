@@ -3,7 +3,7 @@ package com.github.houbb.cache.core.support.listener.slow;
 import com.github.houbb.cache.api.ICacheSlowListenerContext;
 
 /**
- * @author binbin.hou
+ *  
  * @since 0.0.9
  */
 public class CacheSlowListenerContext implements ICacheSlowListenerContext {

@@ -13,7 +13,7 @@ import com.github.houbb.log.integration.core.LogFactory;
  * 淘汰策略-LRU 最近最少使用
  *
  * 实现方式：Lru2
- * @author binbin.hou
+ *  
  * @since 0.0.13
  */
 public class CacheEvictLru2<K,V> extends AbstractCacheEvict<K,V> {
@@ -69,7 +69,7 @@ public class CacheEvictLru2<K,V> extends AbstractCacheEvict<K,V> {
      * 更新信息
      * 1. 如果 moreLruMap 已经存在，则处理 more 队列，先删除，再插入。
      * 2. 如果 firstLruMap 中已经存在，则处理 first 队列，先删除 firstLruMap，然后插入 Lru。
-     * 1 和 2 是不同的场景，但是代码实际上是一样的，删除逻辑中做了二种场景的兼容。
+     * 1 和 2 是不同的场景，但是代码实际上是一样的，删除逻辑中做了2种场景的兼容。
      *
      * 3. 如果不在1、2中，说明是新元素，直接插入到 firstLruMap 的开始即可。
      *

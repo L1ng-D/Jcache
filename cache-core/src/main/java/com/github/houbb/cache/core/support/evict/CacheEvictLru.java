@@ -12,7 +12,7 @@ import java.util.List;
 
 /**
  * 丢弃策略-LRU 最近最少使用
- * @author binbin.hou
+ *  
  * @since 0.0.11
  */
 public class CacheEvictLru<K,V> extends AbstractCacheEvict<K,V> {
@@ -29,9 +29,13 @@ public class CacheEvictLru<K,V> extends AbstractCacheEvict<K,V> {
     protected ICacheEntry<K, V> doEvict(ICacheEvictContext<K, V> context) {
         ICacheEntry<K, V> result = null;
         final ICache<K,V> cache = context.cache();
+
         // 超过限制，移除队尾的元素
         if(cache.size() >= context.size()) {
+            System.out.println("evictKey = " + list.get(list.size()-1));
+
             K evictKey = list.get(list.size()-1);
+            removeKey(evictKey);
             V evictValue = cache.remove(evictKey);
             result = new CacheEntry<>(evictKey, evictValue);
         }
@@ -52,6 +56,8 @@ public class CacheEvictLru<K,V> extends AbstractCacheEvict<K,V> {
     public void updateKey(final K key) {
         this.list.remove(key);
         this.list.add(0, key);
+
+        System.out.println();
     }
 
     /**

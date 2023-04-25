@@ -7,7 +7,7 @@ import com.github.houbb.log.integration.core.LogFactory;
 
 /**
  * 默认的删除监听类
- * @author binbin.hou
+ *  
  * @since 0.0.6
  */
 public class CacheRemoveListener<K,V> implements ICacheRemoveListener<K,V> {

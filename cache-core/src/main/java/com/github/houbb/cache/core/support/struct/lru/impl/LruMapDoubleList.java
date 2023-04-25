@@ -14,7 +14,7 @@ import java.util.Map;
 
 /**
  * 基于双向列表的实现
- * @author binbin.hou
+ *  
  * @since 0.0.13
  */
 public class LruMapDoubleList<K,V> implements ILruMap<K,V> {

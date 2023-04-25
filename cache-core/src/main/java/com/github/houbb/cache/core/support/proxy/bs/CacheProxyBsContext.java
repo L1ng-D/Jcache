@@ -3,11 +3,12 @@ package com.github.houbb.cache.core.support.proxy.bs;
 import com.github.houbb.cache.annotation.CacheInterceptor;
 import com.github.houbb.cache.api.ICache;
 
+import java.lang.annotation.Documented;
 import java.lang.reflect.Method;
 
 /**
  * 代理引导类上下文
- * @author binbin.hou
+ *  
  * @since 0.0.4
  */
 public class CacheProxyBsContext implements ICacheProxyBsContext {

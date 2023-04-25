@@ -14,7 +14,7 @@ import com.github.houbb.log.integration.core.LogFactory;
  * 顺序追加模式
  *
  * AOF 持久化到文件，暂时不考虑 buffer 等特性。
- * @author binbin.hou
+ *  
  * @since 0.0.10
  */
 public class CacheInterceptorAof<K,V> implements ICacheInterceptor<K, V> {

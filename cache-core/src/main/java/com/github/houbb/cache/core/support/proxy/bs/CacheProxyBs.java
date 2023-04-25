@@ -12,7 +12,7 @@ import java.util.List;
 
 /**
  * 代理引导类
- * @author binbin.hou
+ *  
  * @since 0.0.4
  */
 public final class CacheProxyBs {

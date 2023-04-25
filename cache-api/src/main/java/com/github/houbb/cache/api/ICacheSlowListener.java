@@ -3,7 +3,7 @@ package com.github.houbb.cache.api;
 /**
  * 慢日志操作接口
  *
- * @author binbin.hou
+ *  
  * @since 0.0.9
  */
 public interface ICacheSlowListener {

@@ -4,7 +4,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * 持久化缓存接口
- * @author binbin.hou
+ *  
  * @since 0.0.8
  * @param <K> key
  * @param <V> value

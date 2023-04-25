@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit;
  * 优点：定时删除时不用做过多消耗
  * 缺点：惰性删除不友好
  *
- * @author binbin.hou
+ *  
  * @since 0.0.3
  * @param <K> key
  * @param <V> value

@@ -4,7 +4,7 @@ import com.github.houbb.cache.api.ICachePersist;
 
 /**
  * 缓存持久化工具类
- * @author binbin.hou
+ *  
  * @since 0.0.8
  */
 public final class CachePersists {

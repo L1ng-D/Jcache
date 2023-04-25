@@ -15,7 +15,7 @@ import java.util.List;
  *
  * （1）耗时
  * （2）慢日志
- * @author binbin.hou
+ *  
  * @since 0.0.5
  * @param <K> key
  * @param <V> value
@@ -31,7 +31,7 @@ public class CacheInterceptorCost<K,V> implements ICacheInterceptor<K,V> {
 
     @Override
     public void after(ICacheInterceptorContext<K,V> context) {
-        long costMills = context.endMills()-context.startMills();
+        long costMills = context.endMills() - context.startMills();
         final String methodName = context.method().getName();
         log.debug("Cost end, method: {}, cost: {}ms", methodName, costMills);
 

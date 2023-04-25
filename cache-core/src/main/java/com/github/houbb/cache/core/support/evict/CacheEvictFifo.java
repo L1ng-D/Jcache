@@ -4,12 +4,12 @@ import com.github.houbb.cache.api.ICache;
 import com.github.houbb.cache.api.ICacheEvictContext;
 import com.github.houbb.cache.core.model.CacheEntry;
 
-import java.util.LinkedList;
-import java.util.Queue;
+import java.math.BigInteger;
+import java.util.*;
 
 /**
  * 丢弃策略-先进先出
- * @author binbin.hou
+ *  
  * @since 0.0.2
  */
 public class CacheEvictFifo<K,V> extends AbstractCacheEvict<K,V> {

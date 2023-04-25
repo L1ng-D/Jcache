@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * 缓存删除监听类
- * @author binbin.hou
+ *  
  * @since 0.0.6
  */
 public class CacheRemoveListeners {

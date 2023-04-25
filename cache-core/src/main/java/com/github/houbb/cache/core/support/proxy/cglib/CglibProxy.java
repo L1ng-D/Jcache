@@ -13,7 +13,7 @@ import java.lang.reflect.Method;
 
 /**
  * CGLIB 代理类
- * @author binbin.hou
+ *  
  * date 2019/3/7
  * @since 0.0.4
  */

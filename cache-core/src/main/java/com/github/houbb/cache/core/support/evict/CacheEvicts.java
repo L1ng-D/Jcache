@@ -5,7 +5,7 @@ import com.github.houbb.cache.api.ICacheEvict;
 /**
  * 丢弃策略
  *
- * @author binbin.hou
+ *  
  * @since 0.0.2
  */
 public final class CacheEvicts {

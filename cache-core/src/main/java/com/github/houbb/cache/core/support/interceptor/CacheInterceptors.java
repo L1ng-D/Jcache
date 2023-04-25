@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  * 缓存拦截器工具类
- * @author binbin.hou
+ *  
  * @since 0.0.5
  */
 public final class CacheInterceptors {

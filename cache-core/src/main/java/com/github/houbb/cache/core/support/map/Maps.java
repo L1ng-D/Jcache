@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author binbin.hou
+ *  
  * @since 0.0.3
  */
 public final class Maps {

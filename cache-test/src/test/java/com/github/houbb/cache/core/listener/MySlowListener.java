@@ -4,7 +4,7 @@ import com.github.houbb.cache.api.ICacheSlowListener;
 import com.github.houbb.cache.api.ICacheSlowListenerContext;
 
 /**
- * @author binbin.hou
+ *  
  * @since 0.0.9
  */
 public class MySlowListener implements ICacheSlowListener {

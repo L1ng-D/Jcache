@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * 缓存持久化-适配器模式
- * @author binbin.hou
+ *  
  * @since 0.0.10
  */
 public class CachePersistAdaptor<K,V> implements ICachePersist<K,V> {

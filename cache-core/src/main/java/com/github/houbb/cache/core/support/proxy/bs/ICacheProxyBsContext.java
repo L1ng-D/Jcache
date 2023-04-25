@@ -6,7 +6,7 @@ import com.github.houbb.cache.api.ICache;
 import java.lang.reflect.Method;
 
 /**
- * @author binbin.hou
+ *  
  * @since 0.0.4
  */
 public interface ICacheProxyBsContext {

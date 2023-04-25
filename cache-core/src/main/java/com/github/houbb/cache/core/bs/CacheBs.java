@@ -16,7 +16,7 @@ import java.util.Map;
 
 /**
  * 缓存引导类
- * @author binbin.hou
+ *  
  * @since 0.0.2
  */
 public final class CacheBs<K,V> {
@@ -172,6 +172,7 @@ public final class CacheBs<K,V> {
      */
     public ICache<K,V> build() {
         Cache<K,V> cache = new Cache<>();
+        System.out.println(System.identityHashCode(cache));
         cache.map(map);
         cache.evict(evict);
         cache.sizeLimit(size);

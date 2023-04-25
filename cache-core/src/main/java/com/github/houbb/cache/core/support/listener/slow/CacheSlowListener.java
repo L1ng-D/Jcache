@@ -9,7 +9,7 @@ import com.github.houbb.log.integration.core.LogFactory;
 
 /**
  * 慢日志监听类
- * @author binbin.hou
+ *  
  * @since 0.0.9
  */
 public class CacheSlowListener implements ICacheSlowListener {

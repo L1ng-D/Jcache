@@ -2,7 +2,7 @@ package com.github.houbb.cache.core.constant.enums;
 
 /**
  * 删除类型
- * @author binbin.hou
+ *  
  * @since 0.0.6
  */
 public enum CacheRemoveType {

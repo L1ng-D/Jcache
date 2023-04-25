@@ -4,7 +4,7 @@ import com.github.houbb.cache.api.ICacheRemoveListener;
 import com.github.houbb.cache.api.ICacheRemoveListenerContext;
 
 /**
- * @author binbin.hou
+ *  
  * @since 0.0.6
  */
 public class MyRemoveListener<K,V> implements ICacheRemoveListener<K,V> {

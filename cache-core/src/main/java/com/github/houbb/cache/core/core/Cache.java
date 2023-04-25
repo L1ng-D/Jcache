@@ -16,7 +16,7 @@ import java.util.*;
 /**
  * 缓存信息
  *
- * @author binbin.hou
+ *  
  * @param <K> key
  * @param <V> value
  * @since 0.0.2
@@ -90,6 +90,10 @@ public class Cache<K,V> implements ICache<K,V> {
     public Cache<K, V> sizeLimit(int sizeLimit) {
         this.sizeLimit = sizeLimit;
         return this;
+    }
+
+    public int sizeLimit(){
+        return this.sizeLimit;
     }
 
     /**
@@ -241,8 +245,9 @@ public class Cache<K,V> implements ICache<K,V> {
     @CacheInterceptor(evict = true)
     @SuppressWarnings("unchecked")
     public V get(Object key) {
-        //1. 刷新所有过期信息
+        //1. 惰性删除
         K genericKey = (K) key;
+
         this.expire.refreshExpire(Collections.singletonList(genericKey));
 
         return map.get(key);
@@ -252,21 +257,22 @@ public class Cache<K,V> implements ICache<K,V> {
     @CacheInterceptor(aof = true, evict = true)
     public V put(K key, V value) {
         //1.1 尝试驱除
-        CacheEvictContext<K,V> context = new CacheEvictContext<>();
-        context.key(key).size(sizeLimit).cache(this);
+//        CacheEvictContext<K,V> context = new CacheEvictContext<>();
+//        context.key(key).size(sizeLimit).cache(this);
 
-        ICacheEntry<K,V> evictEntry = evict.evict(context);
-
-        // 添加拦截器调用
-        if(ObjectUtil.isNotNull(evictEntry)) {
-            // 执行淘汰监听器
-            ICacheRemoveListenerContext<K,V> removeListenerContext = CacheRemoveListenerContext.<K,V>newInstance().key(evictEntry.key())
-                    .value(evictEntry.value())
-                    .type(CacheRemoveType.EVICT.code());
-            for(ICacheRemoveListener<K,V> listener : context.cache().removeListeners()) {
-                listener.listen(removeListenerContext);
-            }
-        }
+//        if (!map.containsKey(key)){
+//            ICacheEntry<K,V> evictEntry = evict.evict(context);
+//            // 添加拦截器调用
+//            if(ObjectUtil.isNotNull(evictEntry)) {
+//                // 执行淘汰监听器
+//                ICacheRemoveListenerContext<K,V> removeListenerContext = CacheRemoveListenerContext.<K,V>newInstance().key(evictEntry.key())
+//                        .value(evictEntry.value())
+//                        .type(CacheRemoveType.EVICT.code());
+//                for(ICacheRemoveListener<K,V> listener : context.cache().removeListeners()) {
+//                    listener.listen(removeListenerContext);
+//                }
+//            }
+//        }
 
         //2. 判断驱除后的信息
         if(isSizeLimit()) {
@@ -284,7 +290,7 @@ public class Cache<K,V> implements ICache<K,V> {
      */
     private boolean isSizeLimit() {
         final int currentSize = this.size();
-        return currentSize >= this.sizeLimit;
+        return currentSize > this.sizeLimit;
     }
 
     @Override

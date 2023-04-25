@@ -11,7 +11,7 @@ import java.lang.reflect.Method;
  * （4）expire
  * （5）evict
  *
- * @author binbin.hou
+ *  
  * @since 0.0.5
  * @param <K> key
  * @param <V> value

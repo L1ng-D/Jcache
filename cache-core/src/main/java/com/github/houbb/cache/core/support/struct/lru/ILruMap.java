@@ -4,7 +4,7 @@ import com.github.houbb.cache.api.ICacheEntry;
 
 /**
  * LRU map 接口
- * @author binbin.hou
+ *  
  * @since 0.0.13
  */
 public interface ILruMap<K,V> {

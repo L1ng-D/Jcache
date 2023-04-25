@@ -5,7 +5,7 @@ import com.github.houbb.cache.api.ICacheLoad;
 /**
  *
  * 加载策略工具类
- * @author binbin.hou
+ *  
  * @since 0.0.7
  */
 public final class CacheLoads {

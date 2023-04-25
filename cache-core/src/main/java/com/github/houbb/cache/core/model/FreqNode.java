@@ -4,7 +4,7 @@ import java.util.Objects;
 
 /**
  * 包含频率信息的节点
- * @author binbin.hou
+ *  
  * @since 0.0.14
  */
 public class FreqNode<K,V> {

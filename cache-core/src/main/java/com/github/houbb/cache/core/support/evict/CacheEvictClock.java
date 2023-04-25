@@ -12,7 +12,7 @@ import com.github.houbb.log.integration.core.LogFactory;
 /**
  * 淘汰策略-clock 算法
  *
- * @author binbin.hou
+ *  
  * @since 0.0.15
  */
 public class CacheEvictClock<K,V> extends AbstractCacheEvict<K,V> {

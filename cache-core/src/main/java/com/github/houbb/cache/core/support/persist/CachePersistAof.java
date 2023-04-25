@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * 缓存持久化-AOF 持久化模式
- * @author binbin.hou
+ *  
  * @since 0.0.10
  */
 public class CachePersistAof<K,V> extends CachePersistAdaptor<K,V> {

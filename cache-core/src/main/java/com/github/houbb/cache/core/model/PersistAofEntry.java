@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 /**
  * AOF 持久化明细
- * @author binbin.hou
+ *  
  * @since 0.0.10
  */
 public class PersistAofEntry {

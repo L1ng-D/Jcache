@@ -5,7 +5,7 @@ import java.util.Map;
 
 /**
  * 缓存接口
- * @author binbin.hou
+ *  
  * @since 0.0.1
  */
 public interface ICache<K, V> extends Map<K, V> {
@@ -100,4 +100,5 @@ public interface ICache<K, V> extends Map<K, V> {
      */
     ICacheEvict<K,V> evict();
 
+    int sizeLimit();
 }

@@ -1,8 +1,10 @@
 package com.github.houbb.cache.core.model;
 
+import java.util.Arrays;
+
 /**
  * 循环链表节点
- * @author binbin.hou
+ *  
  * @since 0.0.15
  * @param <K> key
  * @param <V> value
@@ -97,6 +99,14 @@ public class CircleListNode<K,V> {
                 ", pre=" + pre +
                 ", next=" + next +
                 '}';
+    }
+
+    public static void main(String[] args) {
+        int[] n = new int[]{1, 4, 3, 2};
+        Arrays.sort(n, 0, 3);
+        for (int i : n) {
+            System.out.println(i);
+        }
     }
 
 }

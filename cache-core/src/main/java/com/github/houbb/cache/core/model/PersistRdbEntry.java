@@ -2,7 +2,7 @@ package com.github.houbb.cache.core.model;
 
 /**
  * 持久化明细
- * @author binbin.hou
+ *  
  * @since 0.0.8
  */
 public class PersistRdbEntry<K,V> {

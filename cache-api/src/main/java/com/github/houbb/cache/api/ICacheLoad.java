@@ -2,7 +2,7 @@ package com.github.houbb.cache.api;
 
 /**
  * 缓存接口
- * @author binbin.hou
+ *  
  * @since 0.0.7
  * @param <K> key
  * @param <V> value

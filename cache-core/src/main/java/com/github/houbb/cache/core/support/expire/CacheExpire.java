@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * 缓存过期-普通策略
  *
- * @author binbin.hou
+ *  
  * @since 0.0.3
  * @param <K> key
  * @param <V> value
@@ -70,6 +70,7 @@ public class CacheExpire<K,V> implements ICacheExpire<K,V> {
     private class ExpireThread implements Runnable {
         @Override
         public void run() {
+
             //1.判断是否为空
             if(MapUtil.isEmpty(expireMap)) {
                 return;
@@ -77,14 +78,23 @@ public class CacheExpire<K,V> implements ICacheExpire<K,V> {
 
             //2. 获取 key 进行处理
             int count = 0;
-            for(Map.Entry<K, Long> entry : expireMap.entrySet()) {
-                if(count >= LIMIT) {
-                    return;
-                }
 
-                expireKey(entry.getKey(), entry.getValue());
-                count++;
+            ArrayList<Map.Entry<K, Long>> entries = new ArrayList<>(expireMap.entrySet());
+            Set<Map.Entry<K, Long>> entrySet = expireMap.entrySet();
+
+            try {
+                for(Map.Entry<K, Long> entry : entrySet) {
+                    if(count >= LIMIT) {
+                        return;
+                    }
+
+                    expireKey(entry.getKey(), entry.getValue());
+                    count++;
+                }
+            }catch (ConcurrentModificationException e){
+                e.printStackTrace();
             }
+
         }
     }
 
@@ -110,6 +120,7 @@ public class CacheExpire<K,V> implements ICacheExpire<K,V> {
                 this.expireKey(entry.getKey(), entry.getValue());
             }
         }
+
     }
 
     @Override
@@ -140,6 +151,27 @@ public class CacheExpire<K,V> implements ICacheExpire<K,V> {
                 listener.listen(removeListenerContext);
             }
         }
+    }
+
+    public static void main(String[] args) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+
+        for (int i = 0; i < 10; i++) {
+            map.put(i, i+10);
+        }
+
+        try{
+            for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+
+                if (entry.getKey() == 7) map.remove(entry.getKey());
+                System.out.println(entry);
+
+            }
+        }catch (ConcurrentModificationException e){
+            System.out.println("========");
+
+        }
+
     }
 
 }

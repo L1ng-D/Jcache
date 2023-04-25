@@ -4,7 +4,7 @@ import java.lang.annotation.*;
 
 /**
  * 缓存拦截器
- * @author binbin.hou
+ *  
  * @since 0.0.5
  */
 @Documented

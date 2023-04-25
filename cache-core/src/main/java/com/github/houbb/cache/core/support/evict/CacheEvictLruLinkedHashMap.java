@@ -15,7 +15,7 @@ import java.util.Map;
  * 丢弃策略-LRU 最近最少使用
  *
  * 实现方式：LinkedHashMap
- * @author binbin.hou
+ *  
  * @since 0.0.12
  */
 public class CacheEvictLruLinkedHashMap<K,V> extends LinkedHashMap<K,V>
@@ -52,6 +52,7 @@ public class CacheEvictLruLinkedHashMap<K,V> extends LinkedHashMap<K,V>
 
             // 构建淘汰的元素
             K evictKey = eldest.getKey();
+            removeKey(evictKey);
             V evictValue = cache.remove(evictKey);
             result = new CacheEntry<>(evictKey, evictValue);
         } else {
